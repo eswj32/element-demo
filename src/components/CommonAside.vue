@@ -4,13 +4,17 @@
     class="el-menu-vertical-demo"
     @open="handleOpen"
     @close="handleClose"
+    background-color="#545c64"
+    text-color="#fff"
+    active-text-color="#ffd04b"
     :collapse="isCollapse"
   >
-  <h3>通用後台管理系統</h3>
+    <h3>通用後台管理系統</h3>
     <el-menu-item
       v-for="item in noChildren"
       :index="item.path + ''"
       :key="item.path"
+      @click="clickMenu(item)"
     >
       <i :class="'el-icon-' + item.icon"></i>
       <span slot="title">{{ item.label }}</span>
@@ -28,7 +32,9 @@
         v-for="(subItem, subIndex) in item.children"
         :key="subItem.path"
       >
-        <el-menu-item :index="subItem.path+''">{{ subItem.label }}</el-menu-item>
+        <el-menu-item :index="subItem.path + ''">{{
+          subItem.label
+        }}</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
   </el-menu>
@@ -90,6 +96,9 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
+    clickMenu(item) {
+      this.$router.push({ name: item.name });
+    },
   },
   computed: {
     noChildren() {
@@ -101,9 +110,18 @@ export default {
   },
 };
 </script>
-<style>
+<style lang="less" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;
+}
+.el-menu {
+  height: 100%;
+  border: none;
+  h3 {
+    color: #fff;
+    text-align: center;
+    line-height: 48px;
+  }
 }
 </style>
