@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="l-content">
-      <el-button plain icon="el-icon-menu" size="mini"></el-button>
+      <el-button plain icon="el-icon-menu" size="mini" @click="handleMenu"></el-button>
       <h3 style="color: #fff">首页</h3>
     </div>
     <div class="r-content">
@@ -23,6 +23,11 @@ export default {
       userImg: require("../assets/images/1.jpg"),
     };
   },
+  methods:{
+    handleMenu() {
+      this.$store.commit("collapseMenu")
+    }
+  }
 };
 </script>
 
