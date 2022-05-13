@@ -19,7 +19,8 @@ import {
   Table,
   TableColumn,
   Breadcrumb,
-  BreadcrumbItem
+  BreadcrumbItem,
+  Tag
 } from "element-ui";
 import App from "./App.vue";
 
@@ -49,6 +50,7 @@ Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Breadcrumb);
 Vue.use(BreadcrumbItem);
+Vue.use(Tag);
 
 Vue.config.productionTip = false;
 
