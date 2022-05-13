@@ -20,7 +20,14 @@ import {
   TableColumn,
   Breadcrumb,
   BreadcrumbItem,
-  Tag
+  Tag,
+  Form,
+  FormItem,
+  Input,
+  Option,
+  Switch,
+  DatePicker,
+  Dialog,
 } from "element-ui";
 import App from "./App.vue";
 
@@ -51,7 +58,13 @@ Vue.use(TableColumn);
 Vue.use(Breadcrumb);
 Vue.use(BreadcrumbItem);
 Vue.use(Tag);
-
+Vue.use(Form);
+Vue.use(FormItem);
+Vue.use(Input);
+Vue.use(Option);
+Vue.use(Switch);
+Vue.use(DatePicker);
+Vue.use(Dialog);
 Vue.config.productionTip = false;
 
 Vue.prototype.$http = http
