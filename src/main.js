@@ -28,6 +28,7 @@ import {
   Switch,
   DatePicker,
   Dialog,
+  Pagination
 } from "element-ui";
 import App from "./App.vue";
 
@@ -65,6 +66,7 @@ Vue.use(Option);
 Vue.use(Switch);
 Vue.use(DatePicker);
 Vue.use(Dialog);
+Vue.use(Pagination);
 Vue.config.productionTip = false;
 
 Vue.prototype.$http = http

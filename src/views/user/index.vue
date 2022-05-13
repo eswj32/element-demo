@@ -15,23 +15,35 @@
         <el-button type="primary" @click="confirm">确定</el-button>
       </div>
     </el-dialog>
-    <el-button class="manage-header" type="primary" @click="addUser">+ 新增</el-button>
-    <Common-form
-      :formLabel="formLabel"
-      :form="searchForm"
-      :inline="true"
-      ref="form"
-    >
-      <el-button type="primary" @click="getList">搜索</el-button>
-    </Common-form>
+    <div class="manage-header">
+      <el-button type="primary" @click="addUser">+ 新增</el-button>
+      <Common-form
+        :formLabel="formLabel"
+        :form="searchForm"
+        :inline="true"
+        ref="form"
+      >
+        <el-button type="primary" @click="getList">搜索</el-button>
+      </Common-form>
+    </div>
+    <common-table
+      :tableData="tableData"
+      :tableLabel="tableLabel"
+      :config="config"
+      @changePage="getList"
+      @edit="editUser"
+      @del="delUser"
+    ></common-table>
   </div>
 </template>
 <script>
 import CommonForm from "@/components/CommonForm.vue";
+import CommonTable from "@/components/CommonTable.vue";
 export default {
   name: "User",
   components: {
     CommonForm,
+    CommonTable,
   },
   data: () => {
     return {
@@ -67,16 +79,47 @@ export default {
         },
       ],
       searchForm: { keyword: "" },
+      tableData: [],
+      tableLabel: [
+        { prop: "name", label: "姓名" },
+        { prop: "age", label: "年龄" },
+        { prop: "sexLabel", label: "性别" },
+        { prop: "birth", label: "出生日期", width: 200 },
+        { prop: "addr", label: "地址", width: 320 },
+      ],
+      config:{
+        page:1,
+        total:30
+      }
     };
   },
   methods: {
-    confirm() {},
+    confirm() {
+      if (this.operateType === "edit") {
+        this.$http.post();
+      }
+    },
     addUser() {
       this.isShow = true;
       this.operateType = "add";
       this.operateForm = { name: "", addr: "", age: "", birth: "", sex: "" };
     },
-    getList() {},
+    getList() {
+      return [
+        {name:13,age:123,sexLabel:123,birth:123,addr:132}
+      ]
+    },
+    editUser(row) {
+      console.log(row)
+    },
+    delUser() {}
   },
 };
 </script>
+<style lang="less" scoped>
+.manage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+</style>
