@@ -13,12 +13,21 @@ import {
   Dropdown,
   DropdownMenu,
   DropdownItem,
+  Row,
+  Col,
+  Card,
+  Table,
+  TableColumn,
+  Breadcrumb,
+  BreadcrumbItem
 } from "element-ui";
 import App from "./App.vue";
 
 import router from "./router";
 
 import store from "./store"
+
+import http from "axios"
 
 Vue.use(Button);
 Vue.use(Select);
@@ -33,8 +42,17 @@ Vue.use(MenuItemGroup);
 Vue.use(Dropdown);
 Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
+Vue.use(Row);
+Vue.use(Col);
+Vue.use(Card);
+Vue.use(Table);
+Vue.use(TableColumn);
+Vue.use(Breadcrumb);
+Vue.use(BreadcrumbItem);
 
 Vue.config.productionTip = false;
+
+Vue.prototype.$http = http
 
 new Vue({
   router,

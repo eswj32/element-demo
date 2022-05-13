@@ -1,8 +1,21 @@
 <template>
   <header>
     <div class="l-content">
-      <el-button plain icon="el-icon-menu" size="mini" @click="handleMenu"></el-button>
-      <h3 style="color: #fff">首页</h3>
+      <el-button
+        plain
+        icon="el-icon-menu"
+        size="mini"
+        @click="handleMenu"
+      ></el-button>
+      <!-- <h3 style="color: #fff">首页</h3> -->
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item
+          v-for="item in tags"
+          :key="item.path"
+          :to="{ path: item.path }"
+          >{{ item.label }}</el-breadcrumb-item
+        >
+      </el-breadcrumb>
     </div>
     <div class="r-content">
       <el-dropdown trigger="click" size="mini">
@@ -16,6 +29,7 @@
   </header>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
   name: "CommonHeader",
   data() {
@@ -23,30 +37,33 @@ export default {
       userImg: require("../assets/images/1.jpg"),
     };
   },
-  methods:{
+  computed: {
+    ...mapState({ tags: (state) => state.tab.tabsList }),
+  },
+  methods: {
     handleMenu() {
-      this.$store.commit("collapseMenu")
-    }
-  }
+      this.$store.commit("collapseMenu");
+    },
+  },
 };
 </script>
 
 <style lang="less" scoped>
-header{
+header {
   display: flex;
   height: 100%;
   justify-content: space-between;
   align-items: center;
 }
-.l-content{
+.l-content {
   display: flex;
   align-items: center;
-  .el-button{
+  .el-button {
     margin-right: 20px;
   }
 }
-.r-content{
-  .user{
+.r-content {
+  .user {
     width: 40px;
     height: 40px;
     border-radius: 50%;

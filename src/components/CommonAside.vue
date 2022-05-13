@@ -9,7 +9,7 @@
     active-text-color="#ffd04b"
     :collapse="isCollapse"
   >
-    <h3>{{isCollapse ? '后台':'通用後台管理系統'}}</h3>
+    <h3>{{ isCollapse ? "后台" : "通用後台管理系統" }}</h3>
     <el-menu-item
       v-for="item in noChildren"
       :index="item.path + ''"
@@ -32,7 +32,7 @@
         v-for="(subItem, subIndex) in item.children"
         :key="subItem.path"
       >
-        <el-menu-item :index="subItem.path + ''">{{
+        <el-menu-item @click="clickMenu(subItem)" :index="subItem.path + ''">{{
           subItem.label
         }}</el-menu-item>
       </el-menu-item-group>
@@ -98,6 +98,7 @@ export default {
     },
     clickMenu(item) {
       this.$router.push({ name: item.name });
+      this.$store.commit('selectMenu',item)
     },
   },
   computed: {
@@ -108,8 +109,8 @@ export default {
       return this.menu.filter((item) => item.children);
     },
     isCollapse() {
-      return this.$store.state.tab.isCollapse
-    }
+      return this.$store.state.tab.isCollapse;
+    },
   },
 };
 </script>
