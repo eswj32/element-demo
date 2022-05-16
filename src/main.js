@@ -28,15 +28,15 @@ import {
   Switch,
   DatePicker,
   Dialog,
-  Pagination
+  Pagination,
 } from "element-ui";
 import App from "./App.vue";
 
 import router from "./router";
 
-import store from "./store"
+import store from "./store";
 
-import http from "axios"
+import http from "axios";
 
 Vue.use(Button);
 Vue.use(Select);
@@ -69,20 +69,25 @@ Vue.use(Dialog);
 Vue.use(Pagination);
 Vue.config.productionTip = false;
 
-Vue.prototype.$http = http
+Vue.prototype.$http = http;
 
-router.beforeEach((to,from,next)=>{
-  store.commit('getToken')
-  const token = store.state.user.token
-  if(!token && to.name !== 'login'){
-    next({name:'login'})
-  }else{
-    next()
+router.beforeEach((to, from, next) => {
+  store.commit("getToken");
+  const token = store.state.user.token;
+  if (!token && to.name !== "login") {
+    next({ name: "login" });
+  } else if (token && to.name === "login") {
+    next({ name: "home" });
+  } else {
+    next();
   }
-})
+});
 
 new Vue({
   router,
   store,
+  created() {
+    store.commit("addMenu", this.$router);
+  },
   render: (h) => h(App),
 }).$mount("#app");

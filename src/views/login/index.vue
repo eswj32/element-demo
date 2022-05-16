@@ -57,6 +57,10 @@ export default {
   },
   methods: {
     login() {
+      var str = '{"name":"huangxiaojian","age":"23"}'
+      // console.log(JSON.stringify(str))
+      // console.log(JSON.parse(str))
+      // console.log(str.toString())
       const token = Mock.Random.guid()
       console.log(token)
       this.$store.commit('setToken',token)
